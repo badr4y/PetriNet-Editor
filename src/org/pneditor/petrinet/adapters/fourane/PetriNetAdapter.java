@@ -32,35 +32,14 @@ public class PetriNetAdapter extends PetriNetInterface {
     public ArcAdapter addRegularArc(AbstractNode source, AbstractNode destination) throws UnimplementedCaseException {
         ArcAdapter arc = null;
         if (source.isPlace()) {
-            if (verifyArcExistence((PlaceAdapter) source, (TransitionAdapter) destination)){
-                throw (new UnimplementedCaseException("arc with same destination and source already exists"));
-            } else {
-                arc = new ArcAdapter(ArcType.Regular,(PlaceAdapter) source, (TransitionAdapter) destination);
-                ((TransitionAdapter) destination).getTransition().getEnteringArcs().add(arc.getArc());
-                arcs.add(arc);
-                return arc;
-            }
+            arc = new ArcAdapter(ArcType.Regular,(PlaceAdapter) source, (TransitionAdapter) destination);
+            ((TransitionAdapter) destination).getTransition().getEnteringArcs().add(arc.getArc());
         } else {
-            if (verifyArcExistence((PlaceAdapter) destination, (TransitionAdapter) source)){
-                throw (new UnimplementedCaseException("arc with same destination and source already exists"));
-            } else {
-                arc = new ArcAdapter(ArcType.Regular, (PlaceAdapter) destination, (TransitionAdapter) source);
-                ((TransitionAdapter) source).getTransition().getExitingArcs().add(arc.getArc());
-                arcs.add(arc);
-                return arc;
-            }
+            arc = new ArcAdapter(ArcType.Regular, (PlaceAdapter) destination, (TransitionAdapter) source);
+            ((TransitionAdapter) source).getTransition().getExitingArcs().add(arc.getArc());
         }
-    }
-
-    public boolean verifyArcExistence(PlaceAdapter place, TransitionAdapter transition) {
-        ArcAdapter testArc = new ArcAdapter(ArcType.Regular,place,transition);
-        for (ArcAdapter arc : arcs) {
-            if (testArc.equals(arc)){
-                System.out.println("shouldnt be created");
-                return true;
-            }
-        }
-        return false;
+        arcs.add(arc);
+        return arc;
     }
 
     @Override
@@ -93,7 +72,8 @@ public class PetriNetAdapter extends PetriNetInterface {
 
     @Override
     public void removeArc(AbstractArc arc) {
-        arcs.remove(arc);
+        ((ArcAdapter) arc).unlinkArc();
+        this.arcs.remove(arc);
     }
 
     @Override
@@ -101,6 +81,8 @@ public class PetriNetAdapter extends PetriNetInterface {
         boolean firable = true;
         List<Arc> arcs = ((TransitionAdapter) transition).getTransition().getEnteringArcs();
         for (Arc enteringArc : arcs) {
+            Class<?> objectClass = enteringArc.getClass();
+            System.out.println("Class of the object: " + objectClass.getName());
             if (!enteringArc.firable()) {
                 firable = false;
                 break;

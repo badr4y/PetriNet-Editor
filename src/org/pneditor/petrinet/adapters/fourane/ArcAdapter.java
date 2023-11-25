@@ -46,6 +46,14 @@ public class ArcAdapter extends AbstractArc {
         }
     }
 
+    public void unlinkArc() {
+        if (this.isSourceAPlace()) {
+            arc.getTransition().getEnteringArcs().remove(arc);
+        } else {
+            arc.getTransition().getExitingArcs().remove(arc);
+        }
+    }
+
     @Override
     public AbstractNode getDestination() {
         if (arc.getTransition().getExitingArcs().contains(arc)){
@@ -55,15 +63,11 @@ public class ArcAdapter extends AbstractArc {
         }
     }
 
-    @Override
-    public boolean equals(Object o){
-        ArcAdapter arc = (ArcAdapter) o;
-        if (this.getSource() == arc.getSource() && this.getDestination() == arc.getDestination()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    @Override
+//    public boolean equals(Object o){
+//        ArcAdapter arc = (ArcAdapter) o;
+//        return this.getSource() == arc.getSource() && this.getDestination() == arc.getDestination();
+//    }
 
     @Override
     public boolean isReset() {
