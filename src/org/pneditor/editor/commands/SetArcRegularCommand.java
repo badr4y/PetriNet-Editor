@@ -31,7 +31,7 @@ public class SetArcRegularCommand implements Command {
 	public void execute() {
 		this.petriNet = this.gPetriNet.getPetriNet();
 		if (this.isNotRegular && this.oldArc.isSourceAPlace()) {
-			this.petriNet.removeAbstractArc(this.oldArc);
+//			this.petriNet.removeAbstractArc(this.oldArc);
 			try {
 				if (this.oldArc.isReset()) {
 					this.newArc = this.petriNet.addRegArc(this.oldArc.getSource(),
@@ -50,6 +50,7 @@ public class SetArcRegularCommand implements Command {
 				// is not implemented
 				PNEditorLogger.warningLogs(e.getMessage());
 			}
+			this.petriNet.removeAbstractArc(this.oldArc);
 			this.gArc.setArc(this.newArc);
 		}
 	}

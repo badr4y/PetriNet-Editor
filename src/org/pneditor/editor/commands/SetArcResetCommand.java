@@ -41,12 +41,13 @@ public class SetArcResetCommand implements Command {
 	public void execute() {
 		this.petriNet = this.gPetriNet.getPetriNet();
 		if (this.isNotReset) {
-			this.petriNet.removeAbstractArc(this.oldArc);
+//			this.petriNet.removeAbstractArc(this.oldArc);
 			try {
 				this.newArc = this.petriNet.addResArc((AbstractPlace) this.oldArc.getSource(), (AbstractTransition) this.oldArc.getDestination());
 			} catch (UnimplementedCaseException e) {
 				PNEditorLogger.infoLogs(e.getMessage()); // should not happen
 			}
+			this.petriNet.removeAbstractArc(this.oldArc);
 			this.gArc.setArc(this.newArc);
 		}
 	}
