@@ -62,7 +62,6 @@ public class SetArcInhibitCommand implements Command {
 			}
 			this.petriNet.removeAbstractArc(this.oldArc);
 			this.gArc.setArc(this.newArc);
-
 		}
 
 	}
