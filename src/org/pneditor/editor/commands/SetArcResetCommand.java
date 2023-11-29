@@ -39,7 +39,7 @@ public class SetArcResetCommand implements Command {
 
 	@Override
 	public void execute() {
-//		this.petriNet = this.gPetriNet.getPetriNet();
+		this.petriNet = this.gPetriNet.getPetriNet();
 		if (this.isNotReset) {
 			this.petriNet.removeAbstractArc(this.oldArc);
 			try {
@@ -47,7 +47,6 @@ public class SetArcResetCommand implements Command {
 			} catch (UnimplementedCaseException e) {
 				PNEditorLogger.infoLogs(e.getMessage()); // should not happen
 			}
-			this.petriNet.removeAbstractArc(this.oldArc);
 			this.gArc.setArc(this.newArc);
 		}
 	}

@@ -13,6 +13,7 @@ public class ArcAdapter extends AbstractArc {
     private final PlaceAdapter place;
     private final TransitionAdapter transition;
     private final ArcType arcType;
+    private boolean direction; //true if source is a place
 
     public PlaceAdapter getPlace() {
         return place;
@@ -20,6 +21,10 @@ public class ArcAdapter extends AbstractArc {
 
     public TransitionAdapter getTransition() {
         return transition;
+    }
+
+    public void setDirection(boolean direction) {
+        this.direction = direction;
     }
 
     public ArcAdapter(ArcType type, PlaceAdapter place, TransitionAdapter transition) {
@@ -39,10 +44,10 @@ public class ArcAdapter extends AbstractArc {
 
     @Override
     public AbstractNode getSource() {
-        if (arc.getTransition().getEnteringArcs().contains(arc)){
-            return this.place;
-        } else {
-            return this.transition;
+        if(direction) {
+            return place;
+        } else  {
+            return transition;
         }
     }
 
@@ -56,10 +61,10 @@ public class ArcAdapter extends AbstractArc {
 
     @Override
     public AbstractNode getDestination() {
-        if (arc.getTransition().getExitingArcs().contains(arc)){
-            return this.place;
-        } else {
-            return this.transition;
+        if(direction) {
+            return transition;
+        } else  {
+            return place;
         }
     }
 

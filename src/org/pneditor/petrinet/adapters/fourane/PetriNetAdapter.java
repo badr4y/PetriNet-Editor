@@ -34,9 +34,11 @@ public class PetriNetAdapter extends PetriNetInterface {
         if (source.isPlace()) {
             arc = new ArcAdapter(ArcType.Regular,(PlaceAdapter) source, (TransitionAdapter) destination);
             ((TransitionAdapter) destination).getTransition().getEnteringArcs().add(arc.getArc());
+            arc.setDirection(true);
         } else {
             arc = new ArcAdapter(ArcType.Regular, (PlaceAdapter) destination, (TransitionAdapter) source);
             ((TransitionAdapter) source).getTransition().getExitingArcs().add(arc.getArc());
+            arc.setDirection(false);
         }
         arcs.add(arc);
         return arc;
@@ -47,6 +49,7 @@ public class PetriNetAdapter extends PetriNetInterface {
         ArcAdapter arc;
         arc = new ArcAdapter(ArcType.Inhibitory, (PlaceAdapter) place, (TransitionAdapter) transition);
         ((TransitionAdapter) transition).getTransition().getEnteringArcs().add(arc.getArc());
+        arc.setDirection(true);
         arcs.add(arc);
         return arc;
     }
@@ -56,6 +59,7 @@ public class PetriNetAdapter extends PetriNetInterface {
         ArcAdapter arc;
         arc = new ArcAdapter(ArcType.Reset, (PlaceAdapter) place, (TransitionAdapter) transition);
         ((TransitionAdapter) transition).getTransition().getEnteringArcs().add(arc.getArc());
+        arc.setDirection(true);
         arcs.add(arc);
         return arc;
     }
