@@ -41,7 +41,7 @@ public class SetArcInhibitCommand implements Command {
 	public void execute() {
 		this.petriNet = this.gPetriNet.getPetriNet();
 		if (this.isNotInhibitory) {
-//			this.petriNet.removeAbstractArc(this.oldArc);
+			this.petriNet.removeAbstractArc(this.oldArc);
 			try {
 				if (this.oldArc.isReset()) {
 					this.newArc = this.petriNet.addInhibArc((AbstractPlace) this.oldArc.getSource(),
@@ -60,9 +60,7 @@ public class SetArcInhibitCommand implements Command {
 				// is not implemented
 				PNEditorLogger.warningLogs(e.getMessage());
 			}
-			this.petriNet.removeAbstractArc(this.oldArc);
 			this.gArc.setArc(this.newArc);
-
 		}
 
 	}
