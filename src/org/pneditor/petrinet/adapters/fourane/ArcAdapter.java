@@ -29,9 +29,9 @@ public class ArcAdapter extends AbstractArc {
 
     public ArcAdapter(ArcType type, PlaceAdapter place, TransitionAdapter transition) {
         switch (type) {
-            case Regular -> this.arc = new Arc(1,place.getPlace(),transition.getTransition());
-            case Reset -> this.arc = new ArcVideur(place.getPlace(),transition.getTransition());
-            case Inhibitory -> this.arc = new ArcZero(place.getPlace(),transition.getTransition());
+            case Regular : this.arc = new Arc(1,place.getPlace(),transition.getTransition());
+            case Reset : this.arc = new ArcVideur(place.getPlace(),transition.getTransition());
+            case Inhibitory : this.arc = new ArcZero(place.getPlace(),transition.getTransition());
         }
         this.place = place;
         this.transition = transition;
@@ -67,12 +67,6 @@ public class ArcAdapter extends AbstractArc {
             return place;
         }
     }
-
-//    @Override
-//    public boolean equals(Object o){
-//        ArcAdapter arc = (ArcAdapter) o;
-//        return this.getSource() == arc.getSource() && this.getDestination() == arc.getDestination();
-//    }
 
     @Override
     public boolean isReset() {

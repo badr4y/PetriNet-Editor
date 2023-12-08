@@ -85,8 +85,8 @@ public class PetriNetAdapter extends PetriNetInterface {
         boolean firable = true;
         List<Arc> arcs = ((TransitionAdapter) transition).getTransition().getEnteringArcs();
         for (Arc enteringArc : arcs) {
-            Class<?> objectClass = enteringArc.getClass();
-            System.out.println("Class of the object: " + objectClass.getName());
+//            Class<?> objectClass = enteringArc.getClass();
+//            System.out.println("Class of the object: " + objectClass.getName());
             if (!enteringArc.firable()) {
                 firable = false;
                 break;
