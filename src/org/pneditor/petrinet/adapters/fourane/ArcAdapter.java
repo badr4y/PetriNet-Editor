@@ -29,9 +29,9 @@ public class ArcAdapter extends AbstractArc {
 
     public ArcAdapter(ArcType type, PlaceAdapter place, TransitionAdapter transition) {
         switch (type) {
-            case Regular : this.arc = new Arc(1,place.getPlace(),transition.getTransition());
-            case Reset : this.arc = new ArcVideur(place.getPlace(),transition.getTransition());
-            case Inhibitory : this.arc = new ArcZero(place.getPlace(),transition.getTransition());
+            case Regular : this.arc = new Arc(1,place.getPlace(),transition.getTransition()); break;
+            case Reset : this.arc = new ArcVideur(place.getPlace(),transition.getTransition()); break;
+            case Inhibitory : this.arc = new ArcZero(place.getPlace(),transition.getTransition()); break;
         }
         this.place = place;
         this.transition = transition;
