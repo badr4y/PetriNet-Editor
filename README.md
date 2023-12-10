@@ -4,7 +4,7 @@ In this project, we integrated our implementation of The PetriNet system found i
 
 ## Adapters
 In this project, we have implemented a series of adapters that serve as bridges, effectively connecting our custom PetriNet model to the editor interface. These adapters enable client code to interact through a unified interface, PetriNetInterface, without concerning itself with the specifics of the underlying implementation.
-![Alt text](2023-12-10.png)
+![Alt text](resources/2023-12-10.png)
 
 Here are explainations of our 5 adapters.
 ### 1. ArcAdapter
@@ -44,14 +44,15 @@ The `ArcType` enum categorizes arcs into three types: Regular, Reset, and Inhibi
 In contrast to the initial and imta models, our model **fourane** can handle and thus create doubled Arcs (Two Arcs or more with the same destination and source).
 
 - **Before Transition:**  
-  ![Before Transition](img_1.png)
+  ![Before Transition](resources/img_1.png)
 
 - **After Transition:**  
-  ![After Transition](img_2.png)
+  ![After Transition](resources/img_2.png)
 
 ## The final class diagram
-The final class diagram that correspond our model.
-![Alt text](ImplantationFinale.png)
+UML class diagram of our model :
+
+![Alt text](resources/ImplantationFinale.png)
 
 ## License and Acknowledgments
 
