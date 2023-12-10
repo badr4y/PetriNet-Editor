@@ -1,9 +1,12 @@
 # PetriNet Implementation Integration into a PetriNet Editor using the Adapter Design Pattern
 
-In this project, we integrated our implementation of The PetriNet system found in [PetriNet Repository](https://github.com/badr4y/PetriNet) into a PetriNet Editor using the Adapter design pattern. To do that, we put our own implementation in this package `src/org/pneditor/petrinet/models/fourane` and then implemented our own adapters (ArcAdapter, PlaceAdapter, TransitionAdapter, PetriNetAdapter) in the `org.pneditor.petrinet.adapters.fourane` package.
+In this project, we integrated our implementation of The PetriNet system found in [PetriNet Repository](https://github.com/badr4y/PetriNet) into a PetriNet Editor using the Adapter design pattern. To do that, we put our own implementation(To find more information about our model, see https://github.com/badr4y/PetriNet) in this package `src/org/pneditor/petrinet/models/fourane` and then implemented our own adapters (ArcAdapter, PlaceAdapter, TransitionAdapter, PetriNetAdapter) in the `org.pneditor.petrinet.adapters.fourane` package.
 
-## Adapter Classes
+## Adapters
+In this project, we have implemented a series of adapters that serve as bridges, effectively connecting our custom PetriNet model to the editor interface. These adapters enable client code to interact through a unified interface, PetriNetInterface, without concerning itself with the specifics of the underlying implementation.
+![Alt text](2023-12-10.png)
 
+Here are explainations of our 5 adapters.
 ### 1. ArcAdapter
 
 The `ArcAdapter` class serves as a bridge between the underlying implementation of Arc, ArcVideur, and ArcZero in the `Arc` package and the Editor interface. This adapter class includes methods to set the direction of the arc, retrieve the associated Place or Transition, and manage the link between the arc and its associated transition.
@@ -45,6 +48,10 @@ In contrast to the initial and imta models, our model **fourane** can handle and
 
 - **After Transition:**  
   ![After Transition](img_2.png)
+
+## The final class diagram
+The final class diagram that correspond our model.
+![Alt text](ImplantationFinale.png)
 
 ## License and Acknowledgments
 
