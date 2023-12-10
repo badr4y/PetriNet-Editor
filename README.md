@@ -1,28 +1,54 @@
-PNEditor (Petri Net editor)
-========
+# PetriNet Implementation Integration into a PetriNet Editor using the Adapter Design Pattern
 
-The original PNE can be downloaded from [www.pneditor.org](http://www.pneditor.org/)
+In this project, we integrated our implementation of The PetriNet system found in [PetriNet Repository](https://github.com/badr4y/PetriNet) into a PetriNet Editor using the Adapter design pattern. To do that, we put our own implementation in this package `src/org/pneditor/petrinet/models/fourane` and then implemented our own adapters (ArcAdapter, PlaceAdapter, TransitionAdapter, PetriNetAdapter) in the `org.pneditor.petrinet.adapters.fourane` package.
 
-This instance is the result of a student project by Joris Thaveau for teaching purpose.
+## Adapter Classes
 
-It is a simplified Petri net editor that allows the editing of many PetriNet models.
+### 1. ArcAdapter
 
-To use:
+The `ArcAdapter` class serves as a bridge between the underlying implementation of Arc, ArcVideur, and ArcZero in the `Arc` package and the Editor interface. This adapter class includes methods to set the direction of the arc, retrieve the associated Place or Transition, and manage the link between the arc and its associated transition.
 
-1. Run org.pneditor.editor.Main as a Java application
-2. Select the model used (the menu scans the org.pneditor.petrinet.adapters folder to build a list of available models and adapters). initial and imta are available. Places and transitions are displayed in different ways.
-3. Edit the PetriNet and fire transitions.
+### 2. PlaceAdapter
 
-You may experiment some unexpected exceptions. Especially if you mix models.
+The `PlaceAdapter` class links the implementation of the Place in the `Place` package with the Editor interface. It includes methods for adding and removing tokens, getting the current number of tokens, and setting the number of tokens for a Place.
 
-The pedagogical approach consists in:
+### 3. TransitionAdapter
 
-1. Develop your own PetriNet model in an independent project/environment - with no GUI, just the ''business'' view
-2. Pack it as a jar, and let it be visible in the path
-3. Develop an Adapter in the org.pneditor.petrinet.adapters folder of PNE to make your model editable
+The `TransitionAdapter` class acts as an adapter between the implementation of Transition in the `Transition` package and the Editor interface. It includes methods to retrieve the associated Transition.
 
-The adapter may be simple or complex depending on the "distance" between your model and the one expected by PNE.
+### 4. PetriNetAdapter
 
-Code license: [GNU GPL v3](http://www.gnu.org/licenses/gpl.html)
+The `PetriNetAdapter` class is a comprehensive adapter that connects the Editor interface with the underlying Petri Net implementation. It manages the creation and removal of Places, Transitions, and Arcs. Additionally, it provides methods for checking enablement, firing transitions, and handling various types of arcs.
+
+### 5. ArcType
+
+The `ArcType` enum categorizes arcs into three types: Regular, Reset, and Inhibitory. This enum simplifies the identification of the arc type during the creation process.
+
+## Usage
+
+1. **Build and Run:**
+   - Build the project.
+
+2. **Run the Editor:**
+   - Execute `src.org.pneditor.editor.Main` as a Java application.
+   - Select the desired model (initial, imta, or our model **fourane**) from the menu.
+
+3. **Build your own Petri Net graphically:**
+   - Create places and transitions and link them with Arcs, set the type of the arc to your desired type, set the number of tokens for each Place and fire the transitions as you want.
+
+## Additional Notes
+
+In contrast to the initial and imta models, our model **fourane** can handle and thus create doubled Arcs (Two Arcs or more with the same destination and source).
+
+- **Before Transition:**  
+  ![Before Transition](img_1.png)
+
+- **After Transition:**  
+  ![After Transition](img_2.png)
+
+## License and Acknowledgments
+
+- Code License: GNU GPL v3.
+- The original Petri Net Editor (PNE) is available at [www.pneditor.org](www.pneditor.org).
 
 Requirements: Java SE 8+
